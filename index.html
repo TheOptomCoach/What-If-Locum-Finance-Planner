@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What If...? UK Optometrist Financial Comparator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F7F4;
+            --surface-color: #FFFFFF;
+            --primary-text-color: #3D405B;
+            --secondary-text-color: #828282;
+            --accent-color: #B08D57; /* Muted Gold */
+            --border-color: #EAEAEA;
+            --highlight-bg: rgba(67, 138, 71, 0.1);
+            --lowlight-bg: rgba(176, 141, 87, 0.1);
+            --shadow-color: rgba(61, 64, 91, 0.08);
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        header {
+            background: linear-gradient(45deg, #3D405B, #2c2e42);
+            color: white;
+            padding: 2rem 2.5rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        main {
+            padding: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: var(--primary-text-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.75rem;
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .input-group {
+            background-color: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+        }
+        .input-group:hover {
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+        .input-group h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: var(--primary-text-color);
+        }
+
+        .slider-container, .input-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .slider-container:last-child, .input-container:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        /* Custom Slider Styles */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+        input[type="range"]:hover {
+            opacity: 1;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 3px solid var(--surface-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 3px solid var(--surface-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slider-output {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 1rem;
+            background-color: var(--bg-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.2);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .checkbox-container label {
+            margin: 0;
+            font-weight: 400;
+        }
+
+        #results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+        #results-table th, #results-table td {
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+        #results-table th {
+            background-color: var(--bg-color);
+            font-weight: 600;
+            text-align: right;
+            color: var(--secondary-text-color);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        #results-table td:first-child, #results-table th:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+        #results-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight-take-home {
+            background-color: var(--highlight-bg) !important;
+            font-weight: 700;
+        }
+        .highlight-low-tax {
+            background-color: var(--lowlight-bg) !important;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            main, header {
+                padding: 1.5rem;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            #results-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+           #passwordOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.password-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.password-box input, .password-box button {
+  margin-top: 10px;
+  padding: 8px;
+  width: 200px;
+}
+
+#passwordMessage {
+  color: red;
+  margin-top: 10px;
+}
+    </style>
+</head>
+<body class="">
+
+    <div id="passwordOverlay">
+  <div class="password-box">
+    <h3>Please enter the password</h3>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button id="submitPassword">Submit</button>
+    <p id="passwordMessage"></p>
+  </div>
+</div>
+
+
+<div class="container">
+    <header>
+        <h1>What If...? UK Locum Financial Planner</h1>
+        <p>Compare UK Employed vs. Locum Scenarios</p>
+    </header>
+    <main>
+        <section id="inputs">
+            <h2>Financial Inputs</h2>
+            <div class="input-grid">
+                <div class="input-group">
+                    <h3>Scenario 1: Employed Income</h3>
+                    <div class="slider-container">
+                        <div class="slider-label">
+                            <label for="employedSalary">Annual Salary</label>
+                            <span class="slider-output" id="employedSalaryValue">£50,000</span>
+                        </div>
+                        <input type="range" id="employedSalary" min="40000" max="70000" step="1000" value="50000">
+                    </div>
+                     <div class="slider-container">
+                        <div class="slider-label">
+                            <label for="employedCosts">Annual Work Costs (Fuel, Parking)</label>
+                            <span class="slider-output" id="employedCostsValue">£1,500</span>
+                        </div>
+                        <input type="range" id="employedCosts" min="100" max="2000" step="100" value="1500">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <h3>Scenario 2: Locum Income</h3>
+                    <div class="slider-container">
+                        <div class="slider-label">
+                            <label for="dailyRate">Average Daily Rate</label>
+                            <span class="slider-output" id="dailyRateValue">£350</span>
+                        </div>
+                        <input type="range" id="dailyRate" min="300" max="450" step="25" value="350">
+                    </div>
+                    <div class="slider-container">
+                         <div class="slider-label">
+                            <label for="daysPerWeek">Days Worked / Week</label>
+                            <span class="slider-output" id="daysPerWeekValue">5</span>
+                        </div>
+                        <input type="range" id="daysPerWeek" min="1" max="7" step="1" value="5">
+                    </div>
+                    <div class="slider-container">
+                         <div class="slider-label">
+                            <label for="weeksOff">Weeks Off / Year</label>
+                            <span class="slider-output" id="weeksOffValue">4</span>
+                        </div>
+                        <input type="range" id="weeksOff" min="1" max="52" step="1" value="4">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">
+                           <label for="locumExpenses">Annual Claimable Business Expenses</label>
+                           <span class="slider-output" id="locumExpensesValue">£3,000</span>
+                       </div>
+                       <input type="range" id="locumExpenses" min="500" max="30000" step="250" value="3000">
+                   </div>
+                </div>
+                
+                <div class="input-group">
+                    <h3>Shared Variables</h3>
+                    <div class="slider-container">
+                        <div class="slider-label">
+                            <label for="isaContribution">Annual ISA Contribution</label>
+                            <span class="slider-output" id="isaContributionValue">£5,000</span>
+                        </div>
+                        <input type="range" id="isaContribution" min="0" max="20000" step="1000" value="5000">
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="cashbackCard" name="cashbackCard" style="transform: scale(1.2);">
+                        <label for="cashbackCard">LTD Company Only - Using 1% cashback card?</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="outputs">
+            <h2>Financial Breakdown (2025/26 Tax Year)</h2>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Gross Income</th>
+                        <th>Taxable Income</th>
+                        <th>Income Tax</th>
+                        <th>Nat. Insurance</th>
+                        <th>Corp. Tax</th>
+                        <th>Dividend Tax</th>
+                        <th>Total Tax</th>
+                        <th>Take-Home Pay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="employedRow">
+                        <td>Employed</td>
+                        <td class="gross-income"></td>
+                        <td class="taxable-income"></td>
+                        <td class="income-tax"></td>
+                        <td class="ni"></td>
+                        <td class="corp-tax">N/A</td>
+                        <td class="dividend-tax">N/A</td>
+                        <td class="total-tax"></td>
+                        <td class="take-home"></td>
+                    </tr>
+                    <tr id="soleTraderRow">
+                        <td>Sole Trader (Locum)</td>
+                        <td class="gross-income"></td>
+                        <td class="taxable-income"></td>
+                        <td class="income-tax"></td>
+                        <td class="ni"></td>
+                        <td class="corp-tax">N/A</td>
+                        <td class="dividend-tax">N/A</td>
+                        <td class="total-tax"></td>
+                        <td class="take-home"></td>
+                    </tr>
+                    <tr id="ltdAllOutRow">
+                        <td>Ltd Co (All Dividends)</td>
+                        <td class="gross-income"></td>
+                        <td class="taxable-income">N/A</td>
+                        <td class="income-tax">£0</td>
+                        <td class="ni">£0</td>
+                        <td class="corp-tax"></td>
+                        <td class="dividend-tax"></td>
+                        <td class="total-tax"></td>
+                        <td class="take-home"></td>
+                    </tr>
+                    <tr id="ltd2kRow">
+                        <td>Ltd Co (£2k/mo Dividend)</td>
+                        <td class="gross-income"></td>
+                        <td class="taxable-income">N/A</td>
+                        <td class="income-tax">£0</td>
+                        <td class="ni">£0</td>
+                        <td class="corp-tax"></td>
+                        <td class="dividend-tax"></td>
+                        <td class="total-tax"></td>
+                        <td class="take-home"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+
+<script>
+    // --- DOM Elements ---
+    const inputs = document.querySelectorAll('input[type="range"], input[type="number"], input[type="checkbox"]');
+    const employedSalary = document.getElementById('employedSalary');
+    const dailyRate = document.getElementById('dailyRate');
+    const daysPerWeek = document.getElementById('daysPerWeek');
+    const weeksOff = document.getElementById('weeksOff');
+    const employedCosts = document.getElementById('employedCosts');
+    const locumExpenses = document.getElementById('locumExpenses');
+    const isaContribution = document.getElementById('isaContribution');
+    const cashbackCard = document.getElementById('cashbackCard');
+
+    // --- Output Span Elements ---
+    const employedSalaryValue = document.getElementById('employedSalaryValue');
+    const employedCostsValue = document.getElementById('employedCostsValue');
+    const dailyRateValue = document.getElementById('dailyRateValue');
+    const daysPerWeekValue = document.getElementById('daysPerWeekValue');
+    const weeksOffValue = document.getElementById('weeksOffValue');
+    const locumExpensesValue = document.getElementById('locumExpensesValue');
+    const isaContributionValue = document.getElementById('isaContributionValue');
+    
+    // --- 2025/2026 Tax Year Constants (UK ex. Scotland) ---
+    const PERSONAL_ALLOWANCE = 12570;
+    const BASIC_RATE_LIMIT = 50270;
+    const HIGHER_RATE_LIMIT = 125140;
+
+    const BASIC_RATE_TAX = 0.20;
+    const HIGHER_RATE_TAX = 0.40;
+    const ADDITIONAL_RATE_TAX = 0.45;
+    
+    // National Insurance
+    const NI_CLASS1_LOWER = 12570;
+    const NI_CLASS1_UPPER = 50270;
+    const NI_CLASS1_RATE1 = 0.08;
+    const NI_CLASS1_RATE2 = 0.02;
+
+    const NI_CLASS4_LOWER = 12570;
+    const NI_CLASS4_UPPER = 50270;
+    const NI_CLASS4_RATE1 = 0.06;
+    const NI_CLASS4_RATE2 = 0.02;
+    const NI_CLASS2_FLAT = 3.45 * 52; // Weekly rate * 52 weeks
+
+    // Corporation Tax (Using a simplified single rate for clarity)
+    const CORP_TAX_RATE = 0.20;
+
+    // Dividends
+    const DIVIDEND_ALLOWANCE = 500;
+    const DIVIDEND_BASIC_RATE = 0.0875;
+    const DIVIDEND_HIGHER_RATE = 0.3375;
+    const DIVIDEND_ADDITIONAL_RATE = 0.3935;
+    const LTD_SALARY = PERSONAL_ALLOWANCE; // Optimal salary for directors
+
+    // ISA
+    const ISA_RETURN_RATE = 0.006;
+
+    // --- Helper Functions ---
+    const formatCurrency = (value) => `£${Math.round(value).toLocaleString()}`;
+
+    const calculateTax = (income) => {
+        let currentAllowance = PERSONAL_ALLOWANCE;
+        if (income > 100000) {
+            currentAllowance = Math.max(0, PERSONAL_ALLOWANCE - (income - 100000) / 2);
+        }
+        
+        let taxableIncome = income - currentAllowance;
+        if (taxableIncome <= 0) return 0;
+
+        let tax = 0;
+        const basicBand = Math.min(taxableIncome, BASIC_RATE_LIMIT - PERSONAL_ALLOWANCE);
+        tax += basicBand * BASIC_RATE_TAX;
+
+        if (taxableIncome > (BASIC_RATE_LIMIT - PERSONAL_ALLOWANCE)) {
+            const higherBand = Math.min(taxableIncome - basicBand, HIGHER_RATE_LIMIT - BASIC_RATE_LIMIT);
+            tax += higherBand * HIGHER_RATE_TAX;
+        }
+
+        if (taxableIncome > (HIGHER_RATE_LIMIT - PERSONAL_ALLOWANCE)) {
+            const additionalBand = taxableIncome - (HIGHER_RATE_LIMIT - PERSONAL_ALLOWANCE);
+            tax += additionalBand * ADDITIONAL_RATE_TAX;
+        }
+        return tax;
+    };
+    
+    const calculateDividendTax = (dividendIncome, otherIncome) => {
+        if (dividendIncome <= 0) return 0;
+        
+        let tax = 0;
+        const totalIncome = dividendIncome + otherIncome;
+        const availablePersonalAllowance = Math.max(0, PERSONAL_ALLOWANCE - otherIncome);
+        let untaxedDividends = dividendIncome;
+
+        // Use up personal allowance if available
+        const dividendsInPersonalAllowance = Math.min(untaxedDividends, availablePersonalAllowance);
+        untaxedDividends -= dividendsInPersonalAllowance;
+
+        // Use up dividend allowance
+        const dividendsInDividendAllowance = Math.min(untaxedDividends, DIVIDEND_ALLOWANCE);
+        untaxedDividends -= dividendsInDividendAllowance;
+        
+        if(untaxedDividends <= 0) return 0;
+
+        let remainingBasicBand = Math.max(0, BASIC_RATE_LIMIT - totalIncome + untaxedDividends);
+        const dividendsInBasic = Math.min(untaxedDividends, remainingBasicBand);
+        tax += dividendsInBasic * DIVIDEND_BASIC_RATE;
+        untaxedDividends -= dividendsInBasic;
+        
+        if (untaxedDividends > 0) {
+            let remainingHigherBand = Math.max(0, HIGHER_RATE_LIMIT - (totalIncome - untaxedDividends));
+            const dividendsInHigher = Math.min(untaxedDividends, remainingHigherBand);
+            tax += dividendsInHigher * DIVIDEND_HIGHER_RATE;
+            untaxedDividends -= dividendsInHigher;
+        }
+
+        if(untaxedDividends > 0){
+            tax += untaxedDividends * DIVIDEND_ADDITIONAL_RATE;
+        }
+
+        return tax;
+    };
+
+    // --- Main Calculation Function ---
+    function calculateAndDisplay() {
+        // --- Get Input Values ---
+        const iEmployedSalary = parseFloat(employedSalary.value);
+        const iDailyRate = parseFloat(dailyRate.value);
+        const iDaysPerWeek = parseFloat(daysPerWeek.value);
+        const iWeeksOff = parseFloat(weeksOff.value);
+        const iEmployedCosts = parseFloat(employedCosts.value) || 0;
+        const iLocumExpenses = parseFloat(locumExpenses.value) || 0;
+        const iIsaContribution = parseFloat(isaContribution.value);
+        const iCashbackCard = cashbackCard.checked;
+
+        // --- Update UI Sliders ---
+        employedSalaryValue.textContent = formatCurrency(iEmployedSalary);
+        employedCostsValue.textContent = formatCurrency(iEmployedCosts);
+        dailyRateValue.textContent = formatCurrency(iDailyRate);
+        daysPerWeekValue.textContent = iDaysPerWeek;
+        weeksOffValue.textContent = iWeeksOff;
+        locumExpensesValue.textContent = formatCurrency(iLocumExpenses);
+        isaContributionValue.textContent = formatCurrency(iIsaContribution);
+        
+        // --- Pre-calculations ---
+        const locumGrossIncome = (iDailyRate * iDaysPerWeek * 52) - (iDailyRate * 7 * iWeeksOff);
+        const isaReturn = iIsaContribution * ISA_RETURN_RATE;
+
+        // --- Scenario 1: Employed ---
+        const employedGross = iEmployedSalary;
+        const employedTaxable = employedGross;
+        const employedIncomeTax = calculateTax(employedTaxable);
+        let employedNI = 0;
+        if (employedGross > NI_CLASS1_LOWER) {
+            const niBand1 = Math.min(employedGross, NI_CLASS1_UPPER) - NI_CLASS1_LOWER;
+            employedNI += Math.max(0, niBand1) * NI_CLASS1_RATE1;
+        }
+        if (employedGross > NI_CLASS1_UPPER) {
+            const niBand2 = employedGross - NI_CLASS1_UPPER;
+            employedNI += niBand2 * NI_CLASS1_RATE2;
+        }
+        const employedTotalTax = employedIncomeTax + employedNI;
+        const employedTakeHome = employedGross - employedTotalTax - iEmployedCosts + isaReturn;
+
+        // --- Scenario 2: Sole Trader ---
+        const stGross = locumGrossIncome;
+        const stTaxableProfit = Math.max(0, stGross - iLocumExpenses);
+        const stIncomeTax = calculateTax(stTaxableProfit);
+        let stNI = 0;
+        if(stTaxableProfit > NI_CLASS4_LOWER){
+            stNI += NI_CLASS2_FLAT; // Add Class 2 if profitable
+            const niBand1 = Math.min(stTaxableProfit, NI_CLASS4_UPPER) - NI_CLASS4_LOWER;
+            stNI += Math.max(0, niBand1) * NI_CLASS4_RATE1;
+            if(stTaxableProfit > NI_CLASS4_UPPER){
+                const niBand2 = stTaxableProfit - NI_CLASS4_UPPER;
+                stNI += niBand2 * NI_CLASS4_RATE2;
+            }
+        }
+        const stTotalTax = stIncomeTax + stNI;
+        const stTakeHome = stGross - iLocumExpenses - stTotalTax + isaReturn;
+
+        // --- Scenario 3 & 4: Limited Company ---
+        const ltdRevenue = locumGrossIncome;
+        const ltdCashback = iCashbackCard ? iLocumExpenses * 0.01 : 0;
+        const ltdProfitBeforeTax = Math.max(0, ltdRevenue - iLocumExpenses - LTD_SALARY);
+        const ltdCorpTax = ltdProfitBeforeTax * CORP_TAX_RATE;
+        const ltdProfitAfterTax = ltdProfitBeforeTax - ltdCorpTax;
+
+        // Scenario 3: All Dividends Out
+        const ltdAllDividends = ltdProfitAfterTax;
+        const ltdAllDividendTax = calculateDividendTax(ltdAllDividends, LTD_SALARY);
+        const ltdAllTotalTax = ltdCorpTax + ltdAllDividendTax;
+        const ltdAllTakeHome = LTD_SALARY + ltdAllDividends - ltdAllDividendTax + ltdCashback;
+        
+        // Scenario 4: £2k/month Dividends
+        const ltd2kDividends = Math.min(ltdProfitAfterTax, 2000 * 12);
+        const ltd2kDividendTax = calculateDividendTax(ltd2kDividends, LTD_SALARY);
+        const ltd2kTotalTax = ltdCorpTax + ltd2kDividendTax;
+        const ltd2kTakeHome = LTD_SALARY + ltd2kDividends - ltd2kDividendTax + ltdCashback;
+
+        // --- Update Table ---
+        const scenarios = [
+            { id: 'employedRow', gross: employedGross, taxable: employedTaxable, it: employedIncomeTax, ni: employedNI, ct: 'N/A', dt: 'N/A', total: employedTotalTax, takeHome: employedTakeHome },
+            { id: 'soleTraderRow', gross: stGross, taxable: stTaxableProfit, it: stIncomeTax, ni: stNI, ct: 'N/A', dt: 'N/A', total: stTotalTax, takeHome: stTakeHome },
+            { id: 'ltdAllOutRow', gross: ltdRevenue, taxable: 'N/A', it: 0, ni: 0, ct: ltdCorpTax, dt: ltdAllDividendTax, total: ltdAllTotalTax, takeHome: ltdAllTakeHome },
+            { id: 'ltd2kRow', gross: ltdRevenue, taxable: 'N/A', it: 0, ni: 0, ct: ltdCorpTax, dt: ltd2kDividendTax, total: ltd2kTotalTax, takeHome: ltd2kTakeHome }
+        ];
+
+        scenarios.forEach(s => {
+            const row = document.getElementById(s.id);
+            row.querySelector('.gross-income').textContent = formatCurrency(s.gross);
+            row.querySelector('.taxable-income').textContent = s.taxable === 'N/A' ? 'N/A' : formatCurrency(s.taxable);
+            row.querySelector('.income-tax').textContent = formatCurrency(s.it);
+            row.querySelector('.ni').textContent = formatCurrency(s.ni);
+            row.querySelector('.corp-tax').textContent = s.ct === 'N/A' ? 'N/A' : formatCurrency(s.ct);
+            row.querySelector('.dividend-tax').textContent = s.dt === 'N/A' ? 'N/A' : formatCurrency(s.dt);
+            row.querySelector('.total-tax').textContent = formatCurrency(s.total);
+            row.querySelector('.take-home').textContent = formatCurrency(s.takeHome);
+        });
+        
+        // --- Highlight Best Options ---
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.classList.remove('highlight-take-home', 'highlight-low-tax');
+        });
+
+        const maxTakeHome = Math.max(...scenarios.map(s => s.takeHome));
+        const minTax = Math.min(...scenarios.map(s => s.total));
+        
+        const bestTakeHomeId = scenarios.find(s => s.takeHome === maxTakeHome).id;
+        const lowestTaxId = scenarios.find(s => s.total === minTax).id;
+        
+        document.getElementById(bestTakeHomeId).classList.add('highlight-take-home');
+        document.getElementById(lowestTaxId).classList.add('highlight-low-tax');
+    }
+
+    // --- Event Listeners ---
+    inputs.forEach(input => input.addEventListener('input', calculateAndDisplay));
+
+    // --- Initial Calculation on Load ---
+    document.addEventListener('DOMContentLoaded', calculateAndDisplay);
+const correctPassword = "1Jnf¬!'?}."; // <-- Replace with your password
+const passwordOverlay = document.getElementById('passwordOverlay');
+const passwordInput = document.getElementById('passwordInput');
+const submitPasswordBtn = document.getElementById('submitPassword');
+const passwordMessage = document.getElementById('passwordMessage');
+
+submitPasswordBtn.addEventListener('click', () => {
+  if (passwordInput.value === correctPassword) {
+    passwordOverlay.style.display = 'none'; // Hide the overlay
+  } else {
+    passwordMessage.textContent = 'Incorrect password. Please try again.';
+  }
+});
+
+// Optional: Allow pressing Enter to submit
+passwordInput.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    submitPasswordBtn.click();
+  }
+});
+</script>
+
+</body></html>
